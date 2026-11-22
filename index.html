@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VoteNow - Plateforme d'élection en ligne simple et sécurisée">
+    <title>VoteNow – Élection en ligne</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="en_tete">
+        <div class="conteneur_en_tete">
+            <div class="titre">
+                <h1>VoteNow</h1>
+            </div>
+            <nav class="onglets_navigation">
+                <button class="bouton_de_navigation actif" data-tab="accueil">Accueil</button>
+                <button class="bouton_de_navigation" data-tab="vote">Voter</button>
+                <button class="bouton_de_navigation" data-tab="resultats">Résultats</button>
+                <button class="bouton_de_navigation" data-tab="administration">Administration</button>
+            </nav>
+            <div class="etat_administration">
+                <span id="texte_etat_connexion" class="texte_etat_connexion">Non connecté</span>
+                <button id="bouton_administration_basculer" class="bouton_administration_basculer" onclick="toggleAdminPanel()">🔐 Admin</button>
+            </div>
+        </div>
+    </header>
+
+    <div id="modale_connexion_administration" class="fenetre_modale cachee">
+        <div class="contenu_modale">
+            <div class="en_tete_modale">
+                <h2>Connexion Administrateur</h2>
+                <button class="fermer_modale" onclick="closeAdminPanel()">✕</button>
+            </div>
+            <div class="corps_modale">
+                <p class="description_modale">Entrez le mot de passe administrateur pour accéder à la gestion des candidats.</p>
+                <div class="groupe_formulaire">
+                    <label for="mot_de_passe_administration">Mot de passe :</label>
+                    <input type="password" id="mot_de_passe_administration" placeholder="Entrez le mot de passe" onkeypress="handleAdminPasswordKeyPress(event)">
+                </div>
+                <div id="message_connexion_administration" class="message cachee"></div>
+            </div>
+            <div class="pied_de_modale">
+                <button style="background: red; color: white;" class="bouton bouton_secondaire" onclick="closeAdminPanel()">Annuler</button>
+                <button style="background: green; color: white;" class="bouton bouton_principal" onclick="authenticateAdmin()">Se Connecter</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modale_confirmation_generique" class="fenetre_modale cachee">
+        <div class="contenu_modale">
+            <div class="en_tete_modale">
+                <h2 id="titre_modale_confirmation">Confirmation</h2>
+                <button class="fermer_modale" onclick="closeConfirmModal()">✕</button>
+            </div>
+            <div class="corps_modale">
+                <p id="corps_modale_confirmation" class="description_modale">Êtes-vous sûr de vouloir effectuer cette action ?</p>
+            </div>
+            <div class="pied_de_modale">
+                <button class="bouton bouton_secondaire" onclick="closeConfirmModal()">Annuler</button>
+                <button class="bouton bouton_danger" id="bouton_action_modale_confirmation">Confirmer</button>
+            </div>
+        </div>
+    </div>
+
+    <main class="conteneur_principal">
+
+        <section id="accueil" class="contenu_onglet actif">
+            <div class="banniere_principale">
+                <div class="contenu_banniere">
+                    <h2>Bienvenue sur VoteNow</h2>
+                    <p class="sous_titre">La plateforme d'élection en ligne simple, rapide et sécurisée</p>
+                    <p class="description">Participez à l'élection de vos représentants en quelques clics. Votre vote compte !</p>
+                </div>
+                <div class="boutons_banniere">
+                    <button class="bouton bouton_principal" onclick="switchTab('vote')">🗳️ Voter Maintenant</button>
+                    <button class="bouton bouton_secondaire" onclick="switchTab('resultats')">📊 Voir les Résultats</button>
+                    <button class="bouton bouton_tertiaire" onclick="switchTab('administration')"> Administration</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="vote" class="contenu_onglet">
+            <div class="conteneur_vote">
+                <h2>Participer à l'Élection</h2>
+                
+                <div class="formulaire_vote">
+                    <div class="groupe_formulaire">
+                        <label for="identifiant_votant">Votre Identifiant :</label>
+                        <input type="text" id="identifiant_votant" placeholder="Ex: 193894321" required>
+                        <small>Cet identifiant est utilisé pour éviter les doubles votes</small>
+                    </div>
+
+                    <div class="groupe_formulaire">
+                        <label>Sélectionnez un Candidat :</label>
+                        <div id="liste_candidats" class="grille_candidats">
+                        
+                        </div>
+                    </div>
+
+                    <div class="actions_formulaire">
+                        <button style="background: green;color: white;" class="bouton bouton_principal" id="bouton_confirmer_vote" onclick="submitVote()">
+                            ✓ Confirmer mon Vote
+                        </button>
+                        <button style="background: red;color: white;" class="bouton bouton_secondaire" onclick="resetVoteForm()">
+                            ↻ Réinitialiser
+                        </button>
+                    </div>
+                </div>
+
+                <div id="message_vote" class="message cachee"></div>
+            </div>
+        </section>
+
+        <section id="resultats" class="contenu_onglet">
+            <div class="conteneur_resultats">
+                <h2>Résultats de l'Élection</h2>
+                
+                <div id="contenu_resultats" class="contenu_resultats">
+                    <div class="tableau_resultats">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Candidat</th>
+                                    <th>Voix</th>
+                                    <th>Pourcentage</th>
+                                </tr>
+                            </thead>
+                            <tbody id="corps_tableau_resultats">
+                            
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="visualisation_resultats">
+                        <h3>Visualisation des Votes</h3>
+                        <div id="graphiques_resultats" class="conteneur_graphiques">
+                        
+                        </div>
+                    </div>
+
+                    <div id="section_gagnant" class="section_gagnant cachee">
+                        <div class="carte_gagnant">
+                            <div class="icone_gagnant">🏆</div>
+                            <h3>Gagnant de l'Élection</h3>
+                            <p id="nom_gagnant" class="nom_gagnant"></p>
+                            <p id="voix_gagnant" class="voix_gagnant"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <button style="background: green;color: white;" class="bouton bouton_secondaire" onclick="refreshResults()">🔄 Rafraîchir</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="administration" class="contenu_onglet">
+
+            <div id="administration_non_connectee" class="administration_non_connectee">
+                <div class="acces_refuse">
+                    <div class="icone">🔒</div>
+                    <h2>Accès Réservé aux Administrateurs</h2>
+                    <p>Veuillez vous connecter avec votre mot de passe administrateur pour accéder à cette section.</p>
+                    <button style="background: green; color: white;" class="bouton bouton_principal" onclick="toggleAdminPanel()">🔓 Se Connecter</button>
+                </div>
+            </div>
+            <div id="administration_connectee" class="conteneur_administration cachee">
+                <div class="en_tete_administration">
+                    <h2>Administration des Candidats</h2>
+                    <button class="bouton bouton_danger" onclick="logoutAdmin()"> Déconnexion</button>
+                </div>
+
+                <div id="section_ajout_candidat" class="formulaire_administration">
+                    <h3>Ajouter un Candidat</h3>
+                    <div class="groupe_formulaire">
+                        <label style="color: #fff;" for="champ_nom_candidat">Nom du Candidat :</label>
+                        <input type="text" id="champ_nom_candidat" placeholder="Ex: Mamadou Sy" required>
+                    </div>
+                    <div class="groupe_formulaire">
+                        <label style="color: #fff;" for="champ_slogan_candidat">Slogan :</label>
+                        <input type="text" id="champ_slogan_candidat" placeholder="Ex: Pour un meilleur avenir" required>
+                    </div>
+                    <button style="background: green; color: white;" class="bouton bouton_principal" onclick="addCandidate()">+ Ajouter Candidat</button>
+                </div>
+
+                <div class="candidats_administration">
+                    <h3>Liste des Candidats</h3>
+                    <div id="liste_candidats_administration" class="liste_candidats_administration">
+
+                    </div>
+                </div>
+
+                <div id="message_administration" class="message cachee"></div>
+                <div class="actions_administration">
+                    <button style="background: red;color: white;" class="bouton bouton_secondaire" onclick="resetAllData()">
+                         Réinitialiser Tous les Votes
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="pied_de_page">
+        <p>Université Iba Der Thiam de Thiès</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

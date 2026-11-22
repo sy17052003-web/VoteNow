@@ -1,0 +1,905 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #FAFAFA;
+    color: #202124;
+    line-height: 1.6;
+}
+
+.en_tete {
+    background: linear-gradient(135deg, #352e2e 0%, #3e1bb5 100%);
+    color: #FFFFFF;
+    padding: 1rem 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.conteneur_en_tete {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.titre h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.onglets_navigation {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.bouton_de_navigation {
+    background: rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    border: 2px solid transparent;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bouton_de_navigation:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.bouton_de_navigation.actif {
+    background: #FFFFFF;
+    color: #352e2e;
+    border-color: #FFFFFF;
+}
+
+.conteneur_principal {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    min-height: calc(100vh - 200px);
+}
+
+.contenu_onglet {
+    display: none;
+    animation: fadeIn 0.4s ease-in;
+}
+
+.contenu_onglet.actif {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.banniere_principale {
+    background: linear-gradient(135deg, #352e2e 0%, #3e1bb5 100%);
+    color: #FFFFFF;
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    text-align: center;
+    margin-bottom: 3rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.contenu_banniere h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.contenu_banniere .sous_titre {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    opacity: 0.95;
+}
+
+.contenu_banniere .description {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.boutons_banniere {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.bouton {
+    padding: 0.8rem 1.6rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-transform: none;
+}
+
+.bouton_principal {
+    background: #e4dcdcbf;
+    color: #000000;
+}
+
+.bouton_principal:hover {
+    background: #ffffff;
+    color: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.bouton_principal:active {
+    transform: translateY(0);
+}
+
+.bouton_secondaire {
+    background: #e4dcdcbf;
+    color: #000000;
+}
+
+.bouton_secondaire:hover {
+    background: #ffffff;
+    color: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.bouton_tertiaire {
+    background: #e4dcdcbf;
+    color: #000000;
+}
+
+.bouton_tertiaire:hover {
+    background: #ffffff;
+    color: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.bouton_danger {
+    background: #EA4335;
+    color: #FFFFFF;
+}
+
+.bouton_danger:hover {
+    background: #D33425;
+    transform: translateY(-2px);
+}
+
+.cartes_information {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.carte_information {
+    background: #FFFFFF;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carte_information:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.carte_information .icone {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.carte_information h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #352e2e;
+}
+
+.carte_information p {
+    color: #000000;
+    font-size: 0.95rem;
+}
+
+.conteneur_vote,
+.conteneur_administration,
+.conteneur_resultats {
+    background: #FFFFFF;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.conteneur_vote h2,
+.conteneur_administration h2,
+.conteneur_resultats h2 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: #352e2e;
+    border-bottom: 3px solid #352e2e;
+    padding-bottom: 1rem;
+}
+
+.groupe_formulaire {
+    margin-bottom: 1.5rem;
+}
+
+.groupe_formulaire label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #202124;
+}
+
+.groupe_formulaire input,
+.groupe_formulaire select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #E8E8E8;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.groupe_formulaire input:focus,
+.groupe_formulaire select:focus {
+    outline: none;
+    border-color: #352e2e;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+}
+
+.groupe_formulaire small {
+    display: block;
+    margin-top: 0.3rem;
+    color: #000000;
+    font-size: 0.85rem;
+}
+
+.grille_candidats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.carte_candidat {
+    background: linear-gradient(135deg, #a39c9c 10%, #3e1bb5 100%);
+    border: 3px solid transparent;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.carte_candidat:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.carte_candidat.selectionnee {
+    border-color: #352e2e;
+    background: rgba(26, 115, 232, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.carte_candidat input[type="radio"] {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.carte_candidat .nom_candidat {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0.5rem 0;
+    color: #352e2e;
+}
+
+.carte_candidat .slogan_candidat {
+    font-size: 0.9rem;
+    color: #000000;
+    font-style: italic;
+}
+
+.actions_formulaire {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.actions_formulaire .bouton {
+    flex: 1;
+    min-width: 150px;
+}
+
+.message {
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+    font-weight: 500;
+    animation: slideDown 0.4s ease-out;
+}
+
+.message.cachee {
+    display: none;
+}
+
+.message.success {
+    background: rgba(52, 168, 83, 0.1);
+    color: #2D8E47;
+    border-left: 4px solid #34A853;
+}
+
+.message.error {
+    background: rgba(234, 67, 53, 0.1);
+    color: #C5221F;
+    border-left: 4px solid #EA4335;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contenu_resultats {
+    margin-top: 2rem;
+}
+
+.tableau_resultats {
+    overflow-x: auto;
+    margin-bottom: 2rem;
+}
+
+.tableau_resultats table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #FFFFFF;
+}
+
+.tableau_resultats th {
+    background: linear-gradient(135deg, #352e2e 0%, #3e1bb5 100%);
+    color: #FFFFFF;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.tableau_resultats td {
+    padding: 1rem;
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.tableau_resultats tr:hover {
+    background: #F5F5F5;
+}
+
+.conteneur_graphiques {
+    margin-top: 2rem;
+}
+
+.element_graphique {
+    margin-bottom: 1.5rem;
+}
+
+.etiquette_graphique {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.etiquette_graphique .nom_candidat {
+    color: #352e2e;
+}
+
+.etiquette_graphique .nombre_voix {
+    color: #000000;
+    font-size: 0.9rem;
+}
+
+.barre_progression {
+    height: 30px;
+    background: #E8E8E8;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.remplissage_barre {
+    height: 100%;
+    background: linear-gradient(135deg, #352e2e 0%, #3e1bb5 100%);
+    border-radius: 8px;
+    transition: width 0.6s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 0.85rem;
+    min-width: 40px;
+}
+
+.section_gagnant {
+    margin-top: 2rem;
+}
+
+.section_gagnant.cachee {
+    display: none;
+}
+
+.carte_gagnant {
+    background: linear-gradient(135deg, #FBBC04 0%, #F8B500 100%);
+    color: #202124;
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    animation: pulse 0.8s ease-in-out;
+}
+
+.icone_gagnant {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.carte_gagnant h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.nom_gagnant {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.voix_gagnant {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.formulaire_administration {
+    background: linear-gradient(135deg, #484545 0%, #3e1bb5 100%);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+.formulaire_administration h3 {
+    margin-bottom: 1.5rem;
+    color: #fffcfc;
+}
+
+.liste_candidats_administration {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.element_candidat_administration {
+    background: #F5F5F5;
+    padding: 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.element_candidat_administration:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.information_candidat h4 {
+    color: #352e2e;
+    margin-bottom: 0.3rem;
+}
+
+.information_candidat p {
+    color: #000000;
+    font-size: 0.9rem;
+}
+
+.bouton_supprimer {
+    background: #EA4335;
+    color: #FFFFFF;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bouton_supprimer:hover {
+    background: #D33425;
+    transform: scale(1.1);
+}
+
+.actions_administration {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.actions_administration .bouton {
+    flex: 1;
+    min-width: 150px;
+}
+
+.pied_de_page {
+    background: linear-gradient(135deg, #352e2e 0%, #3e1bb5 100%);
+    color: #FFFFFF;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+    font-size: 0.9rem;
+}
+
+.etat_administration {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+.texte_etat_connexion {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #FFFFFF;
+}
+
+.texte_etat_connexion.connecte {
+    color: #4CAF50;
+}
+
+.bouton_administration_basculer {
+    background: rgba(255, 255, 255, 0.25);
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bout	.bouton_admin_basculer:hover {
+	    background: rgba(255, 255, 255, 0.35);
+	    transform: translateY(-1px);
+	}
+
+	.cachee {
+	    display: none !important;
+	}
+
+.fenetre_modale {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.fenetre_modale.cachee {
+    display: none;
+}
+
+.contenu_modale {
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    max-width: 450px;
+    width: 90%;
+    overflow: hidden;
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.en_tete_modale {
+    background: linear-gradient(135deg, #352e2e 0%, #000000 100%);
+    color: #FFFFFF;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.en_tete_modale h2 {
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.fermer_modale {
+    background: transparent;
+    border: none;
+    color: #FFFFFF;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fermer_modale:hover {
+    transform: scale(1.2);
+}
+
+.corps_modale {
+    padding: 2rem;
+}
+
+.description_modale {
+    color: #000000;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.pied_de_modale {
+    padding: 1.5rem;
+    background: #F5F5F5;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.pied_de_modale .bouton {
+    min-width: 120px;
+}
+
+.administration_non_connectee {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.acces_refuse {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, #352e2e 0%, #3e1bb5 100%);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    max-width: 500px;
+}
+
+.acces_refuse .icone {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.acces_refuse h2 {
+    color: #ffffff;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.acces_refuse p {
+    color: #ffffff;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+}
+
+.administration_non_connectee.cachee {
+    display: none;
+}
+
+.en_tete_administration {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #352e2e;
+}
+
+.en_tete_administration h2 {
+    margin: 0;
+    color: #352e2e;
+}
+
+.administration_connectee.cachee {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .conteneur_en_tete {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .titre h1 {
+        font-size: 1.5rem;
+    }
+
+    .onglets_navigation {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .conteneur_principal {
+        padding: 1rem;
+    }
+
+    .contenu_banniere h2 {
+        font-size: 1.8rem;
+    }
+
+    .boutons_banniere {
+        flex-direction: column;
+    }
+
+    .boutons_banniere .bouton {
+        width: 100%;
+    }
+
+    .grille_candidats {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    .actions_formulaire {
+        flex-direction: column;
+    }
+
+    .actions_formulaire .bouton {
+        width: 100%;
+    }
+
+    .liste_candidats_administration {
+        grid-template-columns: 1fr;
+    }
+
+    .tableau_resultats {
+        font-size: 0.9rem;
+    }
+
+    .tableau_resultats th,
+    .tableau_resultats td {
+        padding: 0.7rem;
+    }
+
+    .cartes_information {
+        grid-template-columns: 1fr;
+    }
+
+    .etat_administration {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+    }
+
+    .texte_etat_connexion,
+    .bouton_administration_basculer {
+        width: 100%;
+        text-align: center;
+    }
+
+    .contenu_modale {
+        max-width: 95%;
+    }
+
+    .pied_de_modale {
+        flex-direction: column;
+    }
+
+    .pied_de_modale .bouton {
+        width: 100%;
+    }
+
+    .en_tete_administration {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .en_tete_administration .bouton {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .contenu_banniere h2 {
+        font-size: 1.5rem;
+    }
+
+    .contenu_banniere .sous_titre {
+        font-size: 1rem;
+    }
+
+    .bouton {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .grille_candidats {
+        grid-template-columns: 1fr;
+    }
+
+    .conteneur_vote h2,
+    .conteneur_administration h2,
+    .conteneur_resultats h2 {
+        font-size: 1.4rem;
+    }
+}
